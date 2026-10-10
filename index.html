@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jackson Ford - UI/UX Designer Portfolio</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Playfair Display & Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#2c98f0',
+                            yellow: '#f8c030',
+                            purple: '#a84cb8',
+                            red: '#ec5453',
+                            gray: '#f2f3f7',
+                            dark: '#000000',
+                            body: '#4d4d4d'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Poppins"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #4d4d4d;
+        }
+
+        .font-playfair {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Sidebar scrollbar styling */
+        .sidebar-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+        .sidebar-scroll::-webkit-scrollbar-thumb {
+            background-color: #e2e8f0;
+            border-radius: 4px;
+        }
+
+        /* Custom underline animation for active links */
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            width: 0;
+            height: 1px;
+            background-color: #2c98f0;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        .nav-link.active, .nav-link:hover {
+            color: #2c98f0;
+        }
+        .nav-link.active::after, .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero slider transition */
+        .hero-slide {
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            pointer-events: none;
+        }
+        .hero-slide.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+    </style>
+</head>
+<body class="bg-white antialiased">
+
+    <!-- Mobile Header Bar -->
+    <div class="lg:hidden fixed top-0 left-0 right-0 bg-white z-50 border-b border-gray-200 px-4 py-3 flex items-center justify-between shadow-sm">
+        <span class="font-playfair font-bold text-xl tracking-wide text-black">Jackson Ford</span>
+        <button id="mobile-menu-btn" class="p-2 text-gray-700 hover:text-brand-blue focus:outline-none" aria-label="Toggle Menu">
+            <i class="fa-solid fa-bars text-2xl"></i>
+        </button>
+    </div>
+
+    <!-- Main Container -->
+    <div class="flex flex-col lg:flex-row min-h-screen">
+
+        <!-- SIDEBAR -->
+        <aside id="sidebar" class="fixed lg:sticky top-0 left-0 h-screen w-[300px] bg-brand-gray z-40 flex flex-col justify-between py-10 px-6 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out overflow-y-auto sidebar-scroll shrink-0 border-r border-gray-200/60">
+            
+            <!-- Close button for mobile -->
+            <button id="close-sidebar-btn" class="lg:hidden absolute top-4 right-4 text-gray-500 hover:text-black">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+
+            <div class="flex flex-col items-center text-center w-full">
+                <!-- Profile Image -->
+                <div class="w-36 h-36 rounded-full overflow-hidden mb-5 border-4 border-white shadow-md">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=400&h=400&q=80" 
+                         alt="Jackson Ford Profile" 
+                         class="w-full h-full object-cover"
+                         onerror="this.src='https://placehold.co/400x400/2c98f0/ffffff?text=JF'">
+                </div>
+
+                <!-- Profile Name & Title -->
+                <h1 class="font-playfair text-2xl font-bold tracking-tight text-black mb-1">
+                    Jackson Ford
+                </h1>
+                <p class="text-[11px] font-medium tracking-widest text-brand-blue uppercase mb-8">
+                    UI/UX/DESIGNER IN PHILIPPINES
+                </p>
+
+                <!-- Navigation Links -->
+                <nav class="w-full">
+                    <ul class="flex flex-col space-y-3.5 text-xs font-medium tracking-widest uppercase text-gray-600">
+                        <li><a href="#home" class="nav-link active inline-block py-0.5">HOME</a></li>
+                        <li><a href="#about" class="nav-link inline-block py-0.5">ABOUT</a></li>
+                        <li><a href="#services" class="nav-link inline-block py-0.5">SERVICES</a></li>
+                        <li><a href="#skills" class="nav-link inline-block py-0.5">SKILLS</a></li>
+                        <li><a href="#education" class="nav-link inline-block py-0.5">EDUCATION</a></li>
+                        <li><a href="#experience" class="nav-link inline-block py-0.5">EXPERIENCE</a></li>
+                        <li><a href="#work" class="nav-link inline-block py-0.5">WORK</a></li>
+                        <li><a href="#blog" class="nav-link inline-block py-0.5">BLOG</a></li>
+                        <li><a href="#contact" class="nav-link inline-block py-0.5">CONTACT</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Sidebar Footer -->
+            <div class="text-center text-[11px] text-gray-400 mt-8 leading-relaxed">
+                <p>© Copyright ©2026 All rights reserved | This template is made with <i class="fa-solid fa-heart text-red-500"></i> by <a href="https://colorlib.com" target="_blank" class="text-brand-blue hover:underline">Colorlib</a></p>
+                <p class="mt-1">Demo Images: <a href="https://unsplash.com" target="_blank" class="text-brand-blue hover:underline">Unsplash.com</a></p>
+            </div>
+        </aside>
+
+        <!-- Overlay backdrop for mobile menu -->
+        <div id="sidebar-overlay" class="fixed inset-0 bg-black/40 z-30 hidden lg:hidden"></div>
+
+        <!-- MAIN CONTENT AREA -->
+        <main class="flex-1 w-full pt-14 lg:pt-0 overflow-x-hidden">
+
+            <!-- HERO / HOME SECTION -->
+            <section id="home" class="relative w-full min-h-screen flex items-center bg-white overflow-hidden">
+                
+                <!-- Slide 1 -->
+                <div class="hero-slide active absolute inset-0 w-full h-full flex flex-col lg:flex-row items-center justify-between px-8 md:px-16 lg:px-20 py-12">
+                    <!-- Left Hero Content -->
+                    <div class="z-10 max-w-xl my-auto pt-10 lg:pt-0">
+                        <h1 class="font-playfair text-5xl md:text-6xl lg:text-7xl font-bold text-black leading-tight mb-4">
+                            I am <br/>a Designer
+                        </h1>
+                        <p class="text-sm md:text-base text-gray-600 mb-8 font-light">
+                            100% html5 bootstrap templates Made by <a href="https://colorlib.com" target="_blank" class="text-brand-blue hover:underline">colorlib.com</a>
+                        </p>
+                        <a href="#work" class="inline-flex items-center gap-2 border-2 border-black px-6 py-3 text-xs tracking-widest font-semibold uppercase hover:bg-black hover:text-white transition-all duration-300">
+                            VIEW PORTFOLIO <i class="fa-solid fa-briefcase text-sm"></i>
+                        </a>
+                    </div>
+
+                    <!-- Right Hero Image -->
+                    <div class="w-full lg:w-1/2 h-full flex items-end justify-center lg:justify-end mt-8 lg:mt-0">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?fit=crop&w=800&q=80" 
+                             alt="Jackson Ford Hero" 
+                             class="max-h-[85vh] object-cover object-top grayscale filter filter brightness-95 rounded-sm shadow-sm"
+                             onerror="this.src='https://placehold.co/600x800/e2e8f0/1e293b?text=Jackson+Ford'">
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="hero-slide absolute inset-0 w-full h-full flex flex-col lg:flex-row items-center justify-between px-8 md:px-16 lg:px-20 py-12">
+                    <!-- Left Hero Content -->
+                    <div class="z-10 max-w-xl my-auto pt-10 lg:pt-0">
+                        <h1 class="font-playfair text-5xl md:text-6xl lg:text-7xl font-bold text-black leading-tight mb-4">
+                            Hi! <br/>I'm Jackson
+                        </h1>
+                        <p class="text-sm md:text-base text-gray-600 mb-8 font-light">
+                            100% html5 bootstrap templates Made by <a href="https://colorlib.com" target="_blank" class="text-brand-blue hover:underline">colorlib.com</a>
+                        </p>
+                        <a href="#contact" class="inline-flex items-center gap-2 border-2 border-brand-blue bg-brand-blue text-white px-6 py-3 text-xs tracking-widest font-semibold uppercase hover:bg-blue-600 transition-all duration-300 shadow-md">
+                            DOWNLOAD CV <i class="fa-solid fa-download text-sm"></i>
+                        </a>
+                    </div>
+
+                    <!-- Right Hero Image -->
+                    <div class="w-full lg:w-1/2 h-full flex items-end justify-center lg:justify-end mt-8 lg:mt-0">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?fit=crop&w=800&q=80" 
+                             alt="Jackson Ford Secondary" 
+                             class="max-h-[85vh] object-cover object-top grayscale filter brightness-95 rounded-sm shadow-sm"
+                             onerror="this.src='https://placehold.co/600x800/e2e8f0/1e293b?text=Jackson+Ford'">
+                    </div>
+                </div>
+
+                <!-- Carousel Controls / Dot Indicators (Bottom Left matching image) -->
+                <div class="absolute bottom-8 left-8 md:left-16 lg:left-20 z-20 flex items-center space-x-2">
+                    <button class="slide-dot w-3 h-3 rounded-full border-2 border-brand-blue bg-brand-blue transition-all" data-slide="0" aria-label="Slide 1"></button>
+                    <button class="slide-dot w-3 h-3 rounded-full border-2 border-brand-blue bg-transparent transition-all" data-slide="1" aria-label="Slide 2"></button>
+                </div>
+            </section>
+
+            <!-- ABOUT SECTION -->
+            <section id="about" class="py-20 px-8 md:px-16 lg:px-20 max-w-6xl mx-auto border-t border-gray-100">
+                <span class="text-xs tracking-[0.25em] text-gray-400 font-medium uppercase block mb-1">WHO I AM?</span>
+                <h2 class="font-playfair text-3xl md:text-4xl font-bold tracking-wider text-black mb-8 uppercase">ABOUT ME</h2>
+                
+                <p class="text-sm leading-relaxed text-gray-600 mb-4 font-light">
+                    <strong>Hi I'm Jackson Ford</strong> On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country.
+                </p>
+                <p class="text-sm leading-relaxed text-gray-600 mb-12 font-light">
+                    Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.
+                </p>
+
+                <!-- Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Card 1 -->
+                    <div class="p-6 bg-white border-b-2 border-brand-blue shadow-md hover:-translate-y-1 transition-all duration-300">
+                        <div class="text-brand-blue text-3xl mb-4"><i class="fa-solid fa-lightbulb"></i></div>
+                        <h3 class="font-medium text-base text-black mb-2">Graphic Design</h3>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="p-6 bg-white border-b-2 border-brand-red shadow-md hover:-translate-y-1 transition-all duration-300">
+                        <div class="text-brand-red text-3xl mb-4"><i class="fa-solid fa-globe"></i></div>
+                        <h3 class="font-medium text-base text-black mb-2">Web Design</h3>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="p-6 bg-white border-b-2 border-brand-yellow shadow-md hover:-translate-y-1 transition-all duration-300">
+                        <div class="text-brand-yellow text-3xl mb-4"><i class="fa-solid fa-database"></i></div>
+                        <h3 class="font-medium text-base text-black mb-2">Software</h3>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="p-6 bg-white border-b-2 border-brand-purple shadow-md hover:-translate-y-1 transition-all duration-300">
+                        <div class="text-brand-purple text-3xl mb-4"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                        <h3 class="font-medium text-base text-black mb-2">Application</h3>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SERVICES SECTION -->
+            <section id="services" class="py-20 px-8 md:px-16 lg:px-20 max-w-6xl mx-auto border-t border-gray-100">
+                <span class="text-xs tracking-[0.25em] text-gray-400 font-medium uppercase block mb-1">WHAT I DO?</span>
+                <h2 class="font-playfair text-3xl md:text-4xl font-bold tracking-wider text-black mb-12 uppercase">HERE ARE SOME OF MY EXPERTISES</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Service 1 -->
+                    <div class="p-8 bg-white shadow-lg rounded-sm border border-gray-100 relative group hover:shadow-xl transition-all">
+                        <div class="w-16 h-16 bg-blue-50 text-brand-blue flex items-center justify-center text-2xl rounded-full mb-6 group-hover:bg-brand-blue group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-lightbulb"></i>
+                        </div>
+                        <h3 class="font-semibold text-lg text-black mb-3">Innovative Ideas</h3>
+                        <p class="text-xs text-gray-500 leading-relaxed font-light">Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div class="p-8 bg-white shadow-lg rounded-sm border border-gray-100 relative group hover:shadow-xl transition-all">
+                        <div class="w-16 h-16 bg-red-50 text-brand-red flex items-center justify-center text-2xl rounded-full mb-6 group-hover:bg-brand-red group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <h3 class="font-semibold text-lg text-black mb-3">Software Development</h3>
+                        <p class="text-xs text-gray-500 leading-relaxed font-light">Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div class="p-8 bg-white shadow-lg rounded-sm border border-gray-100 relative group hover:shadow-xl transition-all">
+                        <div class="w-16 h-16 bg-yellow-50 text-brand-yellow flex items-center justify-center text-2xl rounded-full mb-6 group-hover:bg-brand-yellow group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-layer-group"></i>
+                        </div>
+                        <h3 class="font-semibold text-lg text-black mb-3">UI/UX Design</h3>
+                        <p class="text-xs text-gray-500 leading-relaxed font-light">Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SKILLS SECTION -->
+            <section id="skills" class="py-20 px-8 md:px-16 lg:px-20 max-w-6xl mx-auto border-t border-gray-100">
+                <span class="text-xs tracking-[0.25em] text-gray-400 font-medium uppercase block mb-1">MY SPECIALTY</span>
+                <h2 class="font-playfair text-3xl md:text-4xl font-bold tracking-wider text-black mb-12 uppercase">MY SKILLS</h2>
+
+                <p class="text-sm leading-relaxed text-gray-600 mb-10 font-light max-w-3xl">
+                    The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
+                    <!-- Skill 1 -->
+                    <div>
+                        <div class="flex justify-between text-xs font-semibold uppercase mb-2">
+                            <span>Photoshop</span>
+                            <span class="text-brand-blue">75%</span>
+                        </div>
+                        <div class="w-full h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                            <div class="h-full bg-brand-blue rounded-full" style="width: 75%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill 2 -->
+                    <div>
+                        <div class="flex justify-between text-xs font-semibold uppercase mb-2">
+                            <span>HTML5</span>
+                            <span class="text-brand-red">85%</span>
+                        </div>
+                        <div class="w-full h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                            <div class="h-full bg-brand-red rounded-full" style="width: 85%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill 3 -->
+                    <div>
+                        <div class="flex justify-between text-xs font-semibold uppercase mb-2">
+                            <span>WordPress</span>
+                            <span class="text-brand-purple">70%</span>
+                        </div>
+                        <div class="w-full h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                            <div class="h-full bg-brand-purple rounded-full" style="width: 70%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill 4 -->
+                    <div>
+                        <div class="flex justify-between text-xs font-semibold uppercase mb-2">
+                            <span>CSS3</span>
+                            <span class="text-brand-yellow">90%</span>
+                        </div>
+                        <div class="w-full h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                            <div class="h-full bg-brand-yellow rounded-full" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- EDUCATION SECTION -->
+            <section id="education" class="py-20 px-8 md:px-16 lg:px-20 max-w-6xl mx-auto border-t border-gray-100">
+                <span class="text-xs tracking-[0.25em] text-gray-400 font-medium uppercase block mb-1">EDUCATION</span>
+                <h2 class="font-playfair text-3xl md:text-4xl font-bold tracking-wider text-black mb-12 uppercase">EDUCATION</h2>
+
+                <div class="space-y-4">
+                    <!-- Item 1 -->
+                    <div class="border border-gray-200 rounded p-5 bg-white shadow-sm">
+                        <h3 class="font-semibold text-base text-black">Master Degree in Graphic Design</h3>
+                        <p class="text-xs text-gray-400 mt-1 mb-2">2015 - 2017 | University of Graphic Design</p>
+                        <p class="text-xs text-gray-600 leading-relaxed font-light">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="border border-gray-200 rounded p-5 bg-white shadow-sm">
+                        <h3 class="font-semibold text-base text-black">Bachelor Degree of Computer Science</h3>
+                        <p class="text-xs text-gray-400 mt-1 mb-2">2011 - 2015 | Tech Institute</p>
+                        <p class="text-xs text-gray-600 leading-relaxed font-light">Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- EXPERIENCE SECTION -->
+            <section id="experience" class="py-20 px-8 md:px-16 lg:px-20 max-w-6xl mx-auto border-t border-gray-100">
+                <span class="text-xs tracking-[0.25em] text-gray-400 font-medium uppercase block mb-1">EXPERIENCE</span>
+                <h2 class="font-playfair text-3xl md:text-4xl font-bold tracking-wider text-black mb-12 uppercase">WORK EXPERIENCE</h2>
+
+                <div class="relative border-l-2 border-gray-200 ml-4 space-y-8">
+                    <!-- Timeline Item 1 -->
+                    <div class="relative pl-8">
+                        <div class="absolute -left-[17px] top-0 w-8 h-8 bg-brand-blue rounded-full flex items-center justify-center text-white text-xs">
+                            <i class="fa-solid fa-pencil"></i>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded border border-gray-100">
+                            <h3 class="font-semibold text-base text-black">Full Stack Developer <span class="text-brand-blue font-normal text-xs">2017-2023</span></h3>
+                            <p class="text-xs text-gray-500 mt-2 leading-relaxed">Tolerably adroitly or so, far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+                        </div>
+                    </div>
+                    <!-- Timeline Item 2 -->
+                    <div class="relative pl-8">
+                        <div class="absolute -left-[17px] top-0 w-8 h-8 bg-brand-red rounded-full flex items-center justify-center text-white text-xs">
+                            <i class="fa-solid fa-briefcase"></i>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded border border-gray-100">
+                            <h3 class="font-semibold text-base text-black">Front End Developer <span class="text-brand-red font-normal text-xs">2015-2017</span></h3>
+                            <p class="text-xs text-gray-500 mt-2 leading-relaxed">Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- WORK SECTION -->
+            <section id="work" class="py-20 px-8 md:px-16 lg:px-20 max-w-6xl mx-auto border-t border-gray-100">
+                <span class="text-xs tracking-[0.25em] text-gray-400 font-medium uppercase block mb-1">MY WORK</span>
+                <h2 class="font-playfair text-3xl md:text-4xl font-bold tracking-wider text-black mb-8 uppercase">RECENT WORK</h2>
+
+                <!-- Gallery Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="relative group overflow-hidden rounded shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?fit=crop&w=600&h=450&q=80" alt="Work 1" class="w-full h-60 object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-brand-blue/80 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6 text-white">
+                            <span class="text-xs uppercase tracking-widest text-blue-100">Graphic Design</span>
+                            <h3 class="font-semibold text-lg">Work Title 01</h3>
+                        </div>
+                    </div>
+
+                    <div class="relative group overflow-hidden rounded shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?fit=crop&w=600&h=450&q=80" alt="Work 2" class="w-full h-60 object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-brand-blue/80 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6 text-white">
+                            <span class="text-xs uppercase tracking-widest text-blue-100">Web Application</span>
+                            <h3 class="font-semibold text-lg">Work Title 02</h3>
+                        </div>
+                    </div>
+
+                    <div class="relative group overflow-hidden rounded shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?fit=crop&w=600&h=450&q=80" alt="Work 3" class="w-full h-60 object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-brand-blue/80 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6 text-white">
+                            <span class="text-xs uppercase tracking-widest text-blue-100">UI/UX Interface</span>
+                            <h3 class="font-semibold text-lg">Work Title 03</h3>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- BLOG SECTION -->
+            <section id="blog" class="py-20 px-8 md:px-16 lg:px-20 max-w-6xl mx-auto border-t border-gray-100">
+                <span class="text-xs tracking-[0.25em] text-gray-400 font-medium uppercase block mb-1">READ</span>
+                <h2 class="font-playfair text-3xl md:text-4xl font-bold tracking-wider text-black mb-12 uppercase">RECENT BLOG</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="border border-gray-100 shadow-sm rounded overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?fit=crop&w=600&h=350&q=80" alt="Blog 1" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <span class="text-[11px] text-gray-400 uppercase tracking-widest block mb-2">APRIL 14, 2026 | WEB DESIGN</span>
+                            <h3 class="font-semibold text-base text-black mb-3 hover:text-brand-blue cursor-pointer">Renovating National Art Gallery</h3>
+                            <p class="text-xs text-gray-500 leading-relaxed font-light">Separated they live in Bookmarksgrove right at the coast of the Semantics...</p>
+                        </div>
+                    </div>
+
+                    <div class="border border-gray-100 shadow-sm rounded overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?fit=crop&w=600&h=350&q=80" alt="Blog 2" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <span class="text-[11px] text-gray-400 uppercase tracking-widest block mb-2">MARCH 28, 2026 | UX UI</span>
+                            <h3 class="font-semibold text-base text-black mb-3 hover:text-brand-blue cursor-pointer">Wordpress Interface Redesign</h3>
+                            <p class="text-xs text-gray-500 leading-relaxed font-light">Separated they live in Bookmarksgrove right at the coast of the Semantics...</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CONTACT SECTION -->
+            <section id="contact" class="py-20 px-8 md:px-16 lg:px-20 max-w-6xl mx-auto border-t border-gray-100 bg-gray-50/50">
+                <span class="text-xs tracking-[0.25em] text-gray-400 font-medium uppercase block mb-1">GET IN TOUCH</span>
+                <h2 class="font-playfair text-3xl md:text-4xl font-bold tracking-wider text-black mb-12 uppercase">CONTACT</h2>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Info Left -->
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-gray-100 text-brand-blue flex items-center justify-center text-xl rounded">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-gray-400 uppercase block">EMAIL ME</span>
+                                <a href="mailto:info@domain.com" class="text-sm font-medium text-black hover:text-brand-blue">info@domain.com</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-gray-100 text-brand-blue flex items-center justify-center text-xl rounded">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-gray-400 uppercase block">CALL ME</span>
+                                <a href="tel:+123456789" class="text-sm font-medium text-black hover:text-brand-blue">+123 456 7890</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="lg:col-span-2">
+                        <form id="contact-form" onsubmit="event.preventDefault(); showNotice();" class="space-y-4">
+                            <input type="text" placeholder="Name" required class="w-full p-3 bg-white border border-gray-200 rounded text-xs focus:outline-none focus:border-brand-blue">
+                            <input type="email" placeholder="Email" required class="w-full p-3 bg-white border border-gray-200 rounded text-xs focus:outline-none focus:border-brand-blue">
+                            <input type="text" placeholder="Subject" required class="w-full p-3 bg-white border border-gray-200 rounded text-xs focus:outline-none focus:border-brand-blue">
+                            <textarea rows="5" placeholder="Message" required class="w-full p-3 bg-white border border-gray-200 rounded text-xs focus:outline-none focus:border-brand-blue"></textarea>
+                            <button type="submit" class="bg-brand-blue text-white px-8 py-3 text-xs uppercase tracking-widest font-semibold rounded hover:bg-blue-600 transition-colors">
+                                SEND MESSAGE
+                            </button>
+                        </form>
+                        <div id="notice-msg" class="hidden mt-4 p-3 bg-green-100 text-green-700 text-xs rounded">
+                            Pesan Anda telah berhasil terkirim!
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        // Interactive Mobile Sidebar Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const closeSidebarBtn = document.getElementById('close-sidebar-btn');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+        function openMenu() {
+            sidebar.classList.remove('-translate-x-full');
+            sidebarOverlay.classList.remove('hidden');
+        }
+
+        function closeMenu() {
+            sidebar.classList.add('-translate-x-full');
+            sidebarOverlay.classList.add('hidden');
+        }
+
+        if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', openMenu);
+        if (closeSidebarBtn) closeSidebarBtn.addEventListener('click', closeMenu);
+        if (sidebarOverlay) sidebarOverlay.addEventListener('click', closeMenu);
+
+        // Hero Slider Logic
+        const slides = document.querySelectorAll('.hero-slide');
+        const dots = document.querySelectorAll('.slide-dot');
+        let currentSlide = 0;
+
+        function goToSlide(index) {
+            slides.forEach((slide, idx) => {
+                slide.classList.toggle('active', idx === index);
+            });
+            dots.forEach((dot, idx) => {
+                if (idx === index) {
+                    dot.classList.add('bg-brand-blue');
+                    dot.classList.remove('bg-transparent');
+                } else {
+                    dot.classList.remove('bg-brand-blue');
+                    dot.classList.add('bg-transparent');
+                }
+            });
+            currentSlide = index;
+        }
+
+        dots.forEach((dot, idx) => {
+            dot.addEventListener('click', () => goToSlide(idx));
+        });
+
+        // Auto slide interval
+        setInterval(() => {
+            let nextSlide = (currentSlide + 1) % slides.length;
+            goToSlide(nextSlide);
+        }, 6000);
+
+        // Highlight Navigation on Scroll (Intersection Observer)
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                if (pageYOffset >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Close sidebar on mobile link click
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth < 1024) {
+                    closeMenu();
+                }
+            });
+        });
+
+        // Simple Form Submission Notification
+        function showNotice() {
+            const notice = document.getElementById('notice-msg');
+            if (notice) {
+                notice.classList.remove('hidden');
+                setTimeout(() => {
+                    notice.classList.add('hidden');
+                }, 4000);
+            }
+        }
+    </script>
+</body>
+</html>
